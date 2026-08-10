@@ -1,0 +1,43 @@
+// Created: Aug  9 2026, 23:44:37
+// Formatted with rustfmt.
+
+fn solve() {
+    let s = read::<String>().into_bytes();
+    let mut total = 0;
+    for (i, &b) in s.iter().enumerate() {
+        let b = (b - b'0') as i32;
+        if i >= 3 {
+            total -= b;
+        } else {
+            total += b;
+        }
+    }
+    if total == 0 {
+        println!("YES");
+    } else {
+        println!("NO");
+    }
+}
+
+fn main() {
+    let t: usize = read();
+    for _ in 0..t {
+        solve();
+    }
+}
+
+thread_local! {
+    pub static INPUT: std::cell::RefCell<std::str::SplitAsciiWhitespace<'static>> = std::cell::RefCell::<std::str::SplitAsciiWhitespace<'static>>::new({
+        let mut input = String::new();
+        std::io::Read::read_to_string(&mut std::io::stdin(), &mut input).unwrap();
+        Box::leak(input.into_boxed_str()).split_ascii_whitespace()
+    });
+}
+
+pub fn read<T: std::str::FromStr>() -> T
+where
+    T::Err: std::fmt::Debug,
+{
+    INPUT.with(|input| input.borrow_mut().next().unwrap().parse().unwrap())
+}
+
