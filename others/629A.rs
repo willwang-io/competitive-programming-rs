@@ -1,19 +1,27 @@
-// Created: Aug 12 2026, 18:46:52
+// Created: Aug 12 2026, 19:53:14
 // Formatted with rustfmt.
 
 fn main() {
     let n: usize = read();
-    let k: i32 = read();
-    let a: Vec<i32> = (0..n).map(|_| read()).collect();
+    let a: Vec<Vec<u8>> = (0..n).map(|_| read::<String>().into_bytes()).collect();
 
-    let mut ans = 1;
-    for i in 1..n {
-        if a[i] - a[i - 1] <= k {
-            ans += 1;
-        } else {
-            ans = 1;
-        }
+    let mut ans = 0;
+
+    for row in &a {
+        let cnt = row.iter().filter(|&&x| x == b'C').count();
+        ans += cnt * (cnt - 1) / 2;
     }
+
+    for j in 0..n {
+        let mut cnt = 0;
+        for i in 0..n {
+            if a[i][j] == b'C' {
+                cnt += 1;
+            }
+        }
+        ans += cnt * (cnt - 1) / 2;
+    }
+
     println!("{ans}");
 }
 

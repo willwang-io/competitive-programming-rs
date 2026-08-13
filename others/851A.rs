@@ -1,20 +1,11 @@
-// Created: Aug 12 2026, 18:46:52
+// Created: Aug 12 2026, 10:19:14
 // Formatted with rustfmt.
 
 fn main() {
-    let n: usize = read();
-    let k: i32 = read();
-    let a: Vec<i32> = (0..n).map(|_| read()).collect();
-
-    let mut ans = 1;
-    for i in 1..n {
-        if a[i] - a[i - 1] <= k {
-            ans += 1;
-        } else {
-            ans = 1;
-        }
-    }
-    println!("{ans}");
+    let n: i64 = read();
+    let k: i64 = read();
+    let t: i64 = read();
+    println!("{}", t.min(k).min(n + k - t));
 }
 
 thread_local! {

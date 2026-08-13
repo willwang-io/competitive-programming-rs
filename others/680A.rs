@@ -1,17 +1,19 @@
-// Created: Aug 12 2026, 18:46:52
+// Created: Aug 12 2026, 21:25:58
 // Formatted with rustfmt.
 
 fn main() {
-    let n: usize = read();
-    let k: i32 = read();
-    let a: Vec<i32> = (0..n).map(|_| read()).collect();
-
-    let mut ans = 1;
-    for i in 1..n {
-        if a[i] - a[i - 1] <= k {
-            ans += 1;
-        } else {
-            ans = 1;
+    let a: Vec<usize> = (0..5).map(|_| read()).collect();
+    let mut sum: usize = a.iter().sum();
+    let mut ans = sum;
+    let mut cnt = vec![0; 101];
+    for x in a {
+        cnt[x] += 1;
+    }
+    for i in 1..=100 {
+        if cnt[i] >= 3 {
+            ans = ans.min(sum - i * 3);
+        } else if cnt[i] >= 2 {
+            ans = ans.min(sum - i * 2);
         }
     }
     println!("{ans}");
