@@ -1,11 +1,30 @@
-// Created: Aug  4 2026, 12:09:58
+// Created: Aug 18 2026, 19:47:24
 // Formatted with rustfmt.
 
 fn solve() {
-    let mut a: Vec<i32> = (0..3).map(|_| read()).collect();
-    a.sort_unstable();
+    let mut k: i64 = read();
+    let mut a: i64 = read();
+    let mut b: i64 = read();
+    let mut x: i64 = read();
+    let mut y: i64 = read();
 
-    let ans = (a[1] - a[0]).min(a[2] - a[1]);
+    if x > y {
+        (a, b) = (b, a);
+        (x, y) = (y, x);
+    }
+
+    let mut ans = 0;
+
+    if k >= a {
+        let cnt = (k - a) / x + 1;
+        ans += cnt;
+        k -= cnt * x;
+    }
+
+    if k >= b {
+        ans += (k - b) / y + 1;
+    }
+
     println!("{ans}");
 }
 

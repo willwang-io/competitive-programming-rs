@@ -1,11 +1,20 @@
-// Created: Aug  4 2026, 12:09:58
+// Created: Aug 18 2026, 19:34:13
 // Formatted with rustfmt.
 
 fn solve() {
-    let mut a: Vec<i32> = (0..3).map(|_| read()).collect();
-    a.sort_unstable();
+    let l1: i32 = read();
+    let b1: i32 = read();
+    let l2: i32 = read();
+    let b2: i32 = read();
+    let l3: i32 = read();
+    let b3: i32 = read();
 
-    let ans = (a[1] - a[0]).min(a[2] - a[1]);
+    let ok = l1 == l2 && l2 == l3 && b1 + b2 + b3 == l1
+        || b1 == b2 && b2 == b3 && l1 + l2 + l3 == b1
+        || l2 == l3 && b2 + b3 == b1 && l1 + l2 == b1
+        || b2 == b3 && l2 + l3 == l1 && b1 + b2 == l1;
+
+    let ans = if ok { "YES" } else { "NO" };
     println!("{ans}");
 }
 

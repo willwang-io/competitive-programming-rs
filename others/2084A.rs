@@ -1,11 +1,19 @@
-// Created: Aug  4 2026, 12:09:58
+// Created: Aug 18 2026, 20:13:05
 // Formatted with rustfmt.
 
 fn solve() {
-    let mut a: Vec<i32> = (0..3).map(|_| read()).collect();
-    a.sort_unstable();
+    let n: usize = read();
 
-    let ans = (a[1] - a[0]).min(a[2] - a[1]);
+    if n % 2 == 0 {
+        println!("-1");
+        return;
+    }
+
+    let ans = std::iter::once(n)
+        .chain(1..n)
+        .map(|x| x.to_string())
+        .collect::<Vec<_>>()
+        .join(" ");
     println!("{ans}");
 }
 

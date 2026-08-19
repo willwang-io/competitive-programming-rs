@@ -1,11 +1,15 @@
-// Created: Aug  4 2026, 12:09:58
+// Created: Aug 18 2026, 20:10:58
 // Formatted with rustfmt.
 
 fn solve() {
-    let mut a: Vec<i32> = (0..3).map(|_| read()).collect();
-    a.sort_unstable();
+    let mut x: i32 = read();
+    let mut ans = 3;
 
-    let ans = (a[1] - a[0]).min(a[2] - a[1]);
+    while x > 1 {
+        x /= 2;
+        ans += 2;
+    }
+
     println!("{ans}");
 }
 

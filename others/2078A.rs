@@ -1,12 +1,16 @@
-// Created: Aug  4 2026, 12:09:58
+// Created: Aug 18 2026, 20:17:14
 // Formatted with rustfmt.
 
 fn solve() {
-    let mut a: Vec<i32> = (0..3).map(|_| read()).collect();
-    a.sort_unstable();
+    let n: i32 = read();
+    let x: i32 = read();
+    let sum = (0..n).map(|_| read::<i32>()).sum::<i32>();
 
-    let ans = (a[1] - a[0]).min(a[2] - a[1]);
-    println!("{ans}");
+    if sum == n * x {
+        println!("YES");
+    } else {
+        println!("NO");
+    }
 }
 
 fn main() {
